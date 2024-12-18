@@ -1,0 +1,30 @@
+{
+    "name": "RoR React devcontainer",
+    // "dockerFile": "Dockerfile",
+    "dockerComposeFile": "docker-compose.yml",
+    "workspaceFolder": "/ror-react-test",
+    "service": "web",
+    "context": "..",
+    "remoteUser": "vscode",
+    "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "extensions": [
+        "rebornix.Ruby",
+        "castwide.solargraph",
+        "ms-azuretools.vscode-docker",
+        "Shopify.ruby-lsp"
+    ],
+    "forwardPorts": [
+        3002,
+        5432,
+        6379
+    ],
+    "postCreateCommand": "bundle install",
+    "remoteEnv": {
+        "RAILS_ENV": "development"
+    },
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/test-app,type=bind"
+    ]
+}

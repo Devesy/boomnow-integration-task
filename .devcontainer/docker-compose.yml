@@ -1,0 +1,29 @@
+services:
+  db1:
+    image: docker.io/postgres:13.1
+    environment:
+      POSTGRES_USER: a
+      POSTGRES_PASSWORD: a
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  web:
+    depends_on:
+      - db1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sleep infinity
+    ports:
+      - "3002:3002"
+    expose:
+      - 3002
+    volumes:
+      - ..:/portal
+
+volumes:
+  postgres-data:
